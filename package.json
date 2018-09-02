@@ -1,0 +1,27 @@
+{
+  "name": "opa.geburtstag.hundertmark.org",
+  "version": "1.0.0",
+  "description": "Geschenk zu Opa Andreas' 65. Geburtstag von Noah",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "2.0.8"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1337-5P34Ker/birthday.git"
+  },
+  "keywords": [
+    "Opa",
+    "Andreas"
+  ],
+  "author": "Noah + Rocco Hundertmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1337-5P34Ker/birthday/issues"
+  },
+  "homepage": "https://github.com/1337-5P34Ker/birthday#readme"
+}
