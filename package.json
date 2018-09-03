@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Geschenk zu Opa Andreas' 65. Geburtstag von Noah",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "electron-packager": "^12.1.1"
+  },
   "devDependencies": {
     "electron": "2.0.8"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/gift-icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/gift-icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Opas Geburtstag\"",    
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/gift-icon.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",

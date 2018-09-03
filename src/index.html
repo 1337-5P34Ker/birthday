@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>15 Puzzle</title>
 	<link rel="stylesheet" href="15-puzzle.css">
+	
 </head>
 <body>
 	<div id="puzzle"></div>
@@ -17,5 +18,16 @@
 	<p><a href="https://github.com/arnisritins/15-Puzzle">View source code on GitHub</a></p>
 
 	<script src="15-puzzle.js"></script>
+	<script>
+// 		var fs = require('fs')
+// var contents = fs.readFileSync('./package.json', 'utf-8')
+// alert(contents);
+
+const ipc = require('electron').ipcRenderer
+const btnQuit = document.getElementById('quit')
+	btnQuit.addEventListener('click', function (event) {
+		ipc.send('quit')
+	})
+		</script>
 </body>
 </html>

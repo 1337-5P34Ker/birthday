@@ -1,8 +1,4 @@
-const ipc = require('electron').ipcRenderer
-const btnQuit = document.getElementById('quit')
-	btnQuit.addEventListener('click', function (event) {
-		ipc.send('quit')
-	})
+
 
 /**
  * 15-puzzle.js
