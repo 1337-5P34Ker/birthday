@@ -1,4 +1,6 @@
 const {app, BrowserWindow, Menu} = require('electron')
+const ipc = require('electron').ipcMain
+
   
   // Behalten Sie eine globale Referenz auf das Fensterobjekt. 
   // Wenn Sie dies nicht tun, wird das Fenster automatisch geschlossen, 
@@ -8,10 +10,10 @@ const {app, BrowserWindow, Menu} = require('electron')
   
   function createWindow () {
     // Erstellen des Browser-Fensters.
-    win = new BrowserWindow({width: 800, height: 600})
+    win = new BrowserWindow({width: 800, height: 600, frame: false, transparent: true})
   
     // und Laden der index.html der App.
-    win.loadFile('index.html')
+    win.loadFile('src/index.html')
   
     // Öffnen der DevTools.
     win.webContents.openDevTools()
@@ -64,6 +66,10 @@ const {app, BrowserWindow, Menu} = require('electron')
     if (win === null) {
       createWindow()
     }
+  })
+
+  ipc.on('quit', function (event, path) {
+    app.quit()
   })
   
   // In dieser Datei können Sie den Rest des App-spezifischen 

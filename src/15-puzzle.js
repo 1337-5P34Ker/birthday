@@ -1,218 +1,243 @@
+const ipc = require('electron').ipcRenderer
+const btnQuit = document.getElementById('quit')
+	btnQuit.addEventListener('click', function (event) {
+		ipc.send('quit')
+	})
+
 /**
  * 15-puzzle.js
  *
  * Copyright (c) 2015 Arnis Ritins
  * Released under the MIT license
  */
-(function(){
+(function () {
+
 	
+
 	var state = 1;
 	var puzzle = document.getElementById('puzzle');
-
-	// Creates solved puzzle
-	solve();
-	
 	// Listens for click on puzzle cells
-	puzzle.addEventListener('click', function(e){
-		if(state == 1){
+	puzzle.addEventListener('click', function (e) {
+		if (state == 1) {
 			// Enables sliding animation
 			puzzle.className = 'animate';
-			shiftCell(e.target);
+			verschieben(e.target);
 		}
 	});
+
+	// Erstelle gelöstes Puzzle
+	loesen();
+
 	
+
 	// Listens for click on control buttons
-	document.getElementById('solve').addEventListener('click', solve);
-	document.getElementById('scramble').addEventListener('click', scramble);
+	document.getElementById('solve').addEventListener('click', loesen);
+	document.getElementById('scramble').addEventListener('click', mischen);
+	document.getElementById('quit').addEventListener('click', quit);
+
+	function quit() {
+		app.quit();
+	}
 
 	/**
 	 * Creates solved puzzle
 	 *
 	 */
-	function solve(){
-		
-		if(state == 0){
+	function loesen() {
+
+		if (state == 0) {
 			return;
 		}
-		
+
 		puzzle.innerHTML = '';
-		
+
 		var n = 1;
-		for(var i = 0; i <= 3; i++){
-			for(var j = 0; j <= 3; j++){
+		for (var i = 0; i <= 3; i++) {
+			for (var j = 0; j <= 3; j++) {
 				var cell = document.createElement('span');
-				cell.id = 'cell-'+i+'-'+j;
-				cell.style.left = (j*80+1*j+1)+'px';
-				cell.style.top = (i*80+1*i+1)+'px';
-				
-				if(n <= 15){
+				cell.id = 'cell-' + i + '-' + j;
+				cell.style.left = (j * 80 + 1 * j + 1) + 'px';
+				cell.style.top = (i * 80 + 1 * i + 1) + 'px';
+
+				if (n <= 15) {
 					cell.classList.add('number');
-					cell.classList.add((i%2==0 && j%2>0 || i%2>0 && j%2==0) ? 'dark' : 'light');
+					cell.classList.add((i % 2 == 0 && j % 2 > 0 || i % 2 > 0 && j % 2 == 0) ? 'dark' : 'light');
 					cell.innerHTML = (n++).toString();
 				} else {
 					cell.className = 'empty';
 				}
-				
+
 				puzzle.appendChild(cell);
 			}
 		}
-		
+
 	}
 
 	/**
-	 * Shifts number cell to the empty cell
+	 * Verschiebe Kachel in Richtung Loch
 	 * 
 	 */
-	function shiftCell(cell){
-		
-		// Checks if selected cell has number
-		if(cell.clasName != 'empty'){
-			
-			// Tries to get empty adjacent cell
-			var emptyCell = getEmptyAdjacentCell(cell);
-			
-			if(emptyCell){
-				// Temporary data
-				var tmp = {style: cell.style.cssText, id: cell.id};
-				
-				// Exchanges id and style values
-				cell.style.cssText = emptyCell.style.cssText;
-				cell.id = emptyCell.id;
-				emptyCell.style.cssText = tmp.style;
-				emptyCell.id = tmp.id;
-				
-				if(state == 1){
-					// Checks the order of numbers
-					checkOrder();
+	function verschieben(cell) {
+
+		// Teste, ob die angeklickte Kachel die leere ist.
+		if (cell.clasName != 'empty') {
+
+			// Versuche,ob eine benachbarte Kachel leer ist
+			var leereKachel = holeLeereBenachbarteKachel(cell);
+
+			if (leereKachel) {
+				// Zwischenspeichern
+				var tmp = {
+					style: cell.style.cssText,
+					id: cell.id
+				};
+
+				// Austausch von ID und Werten
+				cell.style.cssText = leereKachel.style.cssText;
+				cell.id = leereKachel.id;
+				leereKachel.style.cssText = tmp.style;
+				leereKachel.id = tmp.id;
+
+				if (state == 1) {
+					// Test, ob Kacheln wieder in der richtigen Reihenfolge sind.
+					ueberpruefeReihenfolge();
 				}
 			}
 		}
-		
+
 	}
 
 	/**
 	 * Gets specific cell by row and column
 	 *
 	 */
-	function getCell(row, col){
-	
-		return document.getElementById('cell-'+row+'-'+col);
-		
+	function holeKachel(row, col) {
+
+		return document.getElementById('cell-' + row + '-' + col);
+
 	}
 
 	/**
-	 * Gets empty cell
+	 * Hole die leere Kachel
 	 *
 	 */
-	function getEmptyCell(){
-	
+	function holeLeereKachel() {
 		return puzzle.querySelector('.empty');
-			
 	}
-	
+
 	/**
-	 * Gets empty adjacent cell if it exists
+	 * Hole die leere benachbarte Kachel, wenn vorhanden.
 	 *
 	 */
-	function getEmptyAdjacentCell(cell){
-		
-		// Gets all adjacent cells
-		var adjacent = getAdjacentCells(cell);
-		
-		// Searches for empty cell
-		for(var i = 0; i < adjacent.length; i++){
-			if(adjacent[i].className == 'empty'){
-				return adjacent[i];
+	function holeLeereBenachbarteKachel(cell) {
+
+		// Hole alle benachbarten Kacheln
+		var benachbarte = holeBenachbarteKacheln(cell);
+
+		// Suche die leere Kachel
+		for (var i = 0; i < benachbarte.length; i++) {
+			if (benachbarte[i].className == 'empty') {
+				return benachbarte[i];
 			}
 		}
-		
-		// Empty adjacent cell was not found
+
+		// Leere Kachel nicht dabei
 		return false;
-		
+
 	}
 
 	/**
-	 * Gets all adjacent cells
+	 * Hole benachbarte Kacheln
+	 * 
 	 *
 	 */
-	function getAdjacentCells(cell){
-		
+	function holeBenachbarteKacheln(cell) {
+
 		var id = cell.id.split('-');
-		
-		// Gets cell position indexes
-		var row = parseInt(id[1]);
-		var col = parseInt(id[2]);
-		
-		var adjacent = [];
-		
-		// Gets all possible adjacent cells
-		if(row < 3){adjacent.push(getCell(row+1, col));}			
-		if(row > 0){adjacent.push(getCell(row-1, col));}
-		if(col < 3){adjacent.push(getCell(row, col+1));}
-		if(col > 0){adjacent.push(getCell(row, col-1));}
-		
-		return adjacent;
-		
+
+		// Aktuelle Position
+		var reihe = parseInt(id[1], 10);
+		var spalte = parseInt(id[2], 10);
+
+		var benachbarteKacheln = [];
+
+		// Hole alle möglichen benachbarten Kacheln
+		if (reihe < 3) {
+			benachbarteKacheln.push(holeKachel(reihe + 1, spalte));
+		}
+		if (reihe > 0) {
+			benachbarteKacheln.push(holeKachel(reihe - 1, spalte));
+		}
+		if (spalte < 3) {
+			benachbarteKacheln.push(holeKachel(reihe, spalte + 1));
+		}
+		if (spalte > 0) {
+			benachbarteKacheln.push(holeKachel(reihe, spalte - 1));
+		}
+
+		return benachbarteKacheln;
+
 	}
-	
+
 	/**
 	 * Chechs if the order of numbers is correct
 	 *
 	 */
-	function checkOrder(){
-		
-		// Checks if the empty cell is in correct position
-		if(getCell(3, 3).className != 'empty'){
+	function ueberpruefeReihenfolge() {
+
+		// Prüfe, ob die leere Kachel rechts unten ist.
+		if (holeKachel(3, 3).className != 'empty') {
 			return;
 		}
-	
+
 		var n = 1;
-		// Goes through all cells and checks numbers
-		for(var i = 0; i <= 3; i++){
-			for(var j = 0; j <= 3; j++){
-				if(n <= 15 && getCell(i, j).innerHTML != n.toString()){
-					// Order is not correct
+		// Geh durch alle Kacheln und überprüfe die Werte
+		for (var i = 0; i <= 3; i++) {
+			for (var j = 0; j <= 3; j++) {
+				if (n <= 15 && holeKachel(i, j).innerHTML != n.toString()) {
+					// Kachel stimmt nicht
 					return;
 				}
 				n++;
 			}
 		}
-		
+
 		// Puzzle is solved, offers to scramble it
-		if(confirm('Congrats, You did it! \nScramble the puzzle?')){
-			scramble();
+		if (confirm('Congrats, You did it! \nScramble the puzzle?')) {
+			mischen();
 		}
-	
+
 	}
 
 	/**
-	 * Scrambles puzzle
+	 * Mische puzzle
 	 *
 	 */
-	function scramble(){
-	
-		if(state == 0){
+	function mischen() {
+
+		if (state == 0) {
 			return;
 		}
-		
+
 		puzzle.removeAttribute('class');
 		state = 0;
-		
-		var previousCell;
+
+		var vorhergehendeKachel;
 		var i = 1;
-		var interval = setInterval(function(){
-			if(i <= 100){
-				var adjacent = getAdjacentCells(getEmptyCell());
-				if(previousCell){
-					for(var j = adjacent.length-1; j >= 0; j--){
-						if(adjacent[j].innerHTML == previousCell.innerHTML){
-							adjacent.splice(j, 1);
+		var interval = setInterval(function () {
+			if (i <= 100) {
+				var leereKachel = holeLeereKachel();
+				var benachbarte = holeBenachbarteKacheln(leereKachel);
+				if (vorhergehendeKachel) {
+					for (var j = benachbarte.length - 1; j >= 0; j--) {
+						if (benachbarte[j].innerHTML == vorhergehendeKachel.innerHTML) {
+							benachbarte.splice(j, 1);
 						}
 					}
 				}
 				// Gets random adjacent cell and memorizes it for the next iteration
-				previousCell = adjacent[rand(0, adjacent.length-1)];
-				shiftCell(previousCell);
+				vorhergehendeKachel = benachbarte[rand(0, benachbarte.length - 1)];
+				verschieben(vorhergehendeKachel);
 				i++;
 			} else {
 				clearInterval(interval);
@@ -221,14 +246,14 @@
 		}, 5);
 
 	}
-	
+
 	/**
-	 * Generates random number
+	 * Generiere Zufallszahl
 	 *
 	 */
-	function rand(from, to){
+	function rand(von, bis) {
 
-		return Math.floor(Math.random() * (to - from + 1)) + from;
+		return Math.floor(Math.random() * (bis - von + 1)) + von;
 
 	}
 
