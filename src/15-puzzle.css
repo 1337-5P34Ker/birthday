@@ -27,6 +27,7 @@ p a{color: #888;}
 	margin-top: 80px;
 	border: 8px solid #001F1F;
 	border-radius: 4px;
+	background-color: black;
 }
 #puzzle span{
 	position: absolute;
@@ -34,6 +35,9 @@ p a{color: #888;}
 	width: 80px;
 	height: 80px;
 	border-radius: 4px;
+	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
+	background-image: url(../assets/images/image_1.jpg);
+	background-position: top left;
 }
 #puzzle span.number{
 	cursor: pointer;
@@ -43,8 +47,8 @@ p a{color: #888;}
 	color: #fff;
 }
 #puzzle span.empty{background: transparent;}
-#puzzle span.number.light{background: #226666;}
-#puzzle span.number.dark{background: #003333;}
+/* #puzzle span.number.light{background: #226666;}
+#puzzle span.number.dark{background: #003333;} */
 
 #puzzle.animate span{
 	-webkit-transition: 0.15s left, 0.15s top;

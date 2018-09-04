@@ -16,7 +16,7 @@ const ipc = require('electron').ipcMain
     win.loadFile('src/index.html')
   
     // Öffnen der DevTools.
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
     process.env.NODE_ENV='production';
   
     // Ausgegeben, wenn das Fenster geschlossen wird.
