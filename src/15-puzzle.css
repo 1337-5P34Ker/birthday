@@ -37,7 +37,6 @@ p a{color: #888;}
 	border-radius: 4px;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
 	background-image: url(../assets/images/image_1.jpg);
-	background-position: top left;
 }
 #puzzle span.number{
 	cursor: pointer;
@@ -51,6 +50,52 @@ p a{color: #888;}
 #puzzle span.number.dark{background: #003333;} */
 
 #puzzle.animate span{
-	-webkit-transition: 0.15s left, 0.15s top;
- 	transition: 0.15s left, 0.15s top;
+	-webkit-transition: 0.25s left, 0.25s top;
+ 	transition: 0.25s left, 0.25s top;
+}
+
+.f-1{
+	background-position: 0 0;
+}
+.f-2{
+	background-position: -80px 0;
+}
+.f-3{
+	background-position: -160px 0;
+}
+.f-4{
+	background-position: -240px 0;
+}
+.f-5{
+	background-position: 0 -80px;
+}
+.f-6{
+	background-position: -80px -80px;
+}
+.f-7{
+	background-position: -160px -80px;
+}
+.f-8{
+	background-position: -240px -80px;
+}
+.f-9{
+	background-position: 0 -160px;
+}
+.f-10{
+	background-position: -80px -160px;
+}
+.f-11{
+	background-position: -160px -160px;
+}
+.f-12{
+	background-position: -240px -160px;
+}
+.f-13{
+	background-position: 0 -240px;
+}
+.f-14{
+	background-position: -80px -240px;
+}
+.f-15{
+	background-position: -160px -240px;
 }

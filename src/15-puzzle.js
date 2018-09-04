@@ -57,6 +57,7 @@
 
 				if (n <= 15) {
 					cell.classList.add('number');
+					cell.classList.add('f-' + n);
 					cell.classList.add((i % 2 == 0 && j % 2 > 0 || i % 2 > 0 && j % 2 == 0) ? 'dark' : 'light');
 					cell.innerHTML = (n++).toString();
 				} else {
@@ -239,7 +240,7 @@
 				clearInterval(interval);
 				state = 1;
 			}
-		}, 5);
+		}, 150);
 
 	}
 

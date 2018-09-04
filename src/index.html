@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>15 Puzzle</title>
 	<link rel="stylesheet" href="15-puzzle.css">
-	
+
 </head>
+
 <body>
 	<div id="puzzle"></div>
 	<div id="controls">
-		<button id="solve">Lösen</button>		
+		<button id="solve">Lösen</button>
 		<button id="scramble">Mischen</button>
-		<button id="quit">Beenden</button>		
+		<button id="quit">Beenden</button>
+		<button id="help">Hilfe</button>
 	</div>
-	
-	<p>Developed by Arnis Ritiņš</p>
-	<p><a href="https://github.com/arnisritins/15-Puzzle">View source code on GitHub</a></p>
 
 	<script src="15-puzzle.js"></script>
 	<script>
-// 		var fs = require('fs')
-// var contents = fs.readFileSync('./package.json', 'utf-8')
-// alert(contents);
+		// 		var fs = require('fs')
+		// var contents = fs.readFileSync('./package.json', 'utf-8')
+		// alert(contents);
 
-const ipc = require('electron').ipcRenderer
-const btnQuit = document.getElementById('quit')
-	btnQuit.addEventListener('click', function (event) {
-		ipc.send('quit')
-	})
-		</script>
+		const ipc = require('electron').ipcRenderer
+		const btnQuit = document.getElementById('quit')
+		btnQuit.addEventListener('click', function (event) {
+			console.log('quit');
+			ipc.send('quit')
+		})
+
+		const btnHelp = document.getElementById('help')
+		btnHelp.addEventListener('click', function () {
+			const numbers = document.getElementsByClassName('number');
+			numbers.forEach(ctrl =>{
+				ctrl.setAttribute('style', 'opacity:0')
+			})
+			console.log(numbers.length);
+		});
+	</script>
 </body>
+
 </html>

@@ -10,13 +10,13 @@ const ipc = require('electron').ipcMain
   
   function createWindow () {
     // Erstellen des Browser-Fensters.
-    win = new BrowserWindow({width: 800, height: 600, frame: false, transparent: true})
+    win = new BrowserWindow({width: 800, height: 600, frame: true, transparent: true})
   
     // und Laden der index.html der App.
-    win.loadFile('src/index.html')
+    win.loadFile('src/index.html');
   
     // Öffnen der DevTools.
-    win.webContents.openDevTools()
+    win.webContents.openDevTools();
     process.env.NODE_ENV='production';
   
     // Ausgegeben, wenn das Fenster geschlossen wird.
