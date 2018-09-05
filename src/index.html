@@ -15,15 +15,60 @@
 		<button id="scramble">Mischen</button>
 		<button id="quit">Beenden</button>
 		<button id="help">Hilfe</button>
+		<button id="prev">&lt;</button>
+		<button id="next">&gt;</button>
 	</div>
 
 	<script src="15-puzzle.js"></script>
+	<script src="../assets/images.json"></script>
 	<script>
-		// 		var fs = require('fs')
-		// var contents = fs.readFileSync('./package.json', 'utf-8')
-		// alert(contents);
-
+		const loadJsonFile = require('load-json-file');
 		const ipc = require('electron').ipcRenderer
+		var aktuellesBild = 0;
+		var bilder;
+
+		loadJsonFile('assets/images.json').then(json => {
+			bilder = json;
+			naechstesBild();
+		});
+
+		function naechstesBild() {
+			aktuellesBild++;
+			var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
+			setzeBild(neuesBild);
+		}
+
+		function vorhergehendesBild() {
+			aktuellesBild--;
+			var neuesBild = aktuellesBild > 0 ? aktuellesBild : bilder.length - 1;
+			setzeBild(neuesBild);
+		}
+
+		function setzeBild(id) {
+			aktuellesBild = id;
+			var src = bilder[id].src;
+			var customStyle = document.getElementById('customStyle');
+			if (customStyle != null &&  customStyle.parentNode) {
+				customStyle.parentNode.removeChild(customStyle);
+			}
+			customStyle = document.createElement('style');
+			console.log(src);
+			customStyle.id = 'customStyle';
+			// var attr = document.createAttribute('type');
+			// attr.value = 'text/css';
+			// customStyle.a(attr); 
+			customStyle.innerText = `#puzzle span{background-image: url(${src});}`;
+			var head = document.getElementsByTagName('head');
+			head[0].appendChild(customStyle);
+		}
+
+
+		const btnPrev = document.getElementById('prev');
+		btnPrev.addEventListener('click', vorhergehendesBild)
+
+		const btnNext = document.getElementById('next');
+		btnNext.addEventListener('click', naechstesBild)
+
 		const btnQuit = document.getElementById('quit')
 		btnQuit.addEventListener('click', function (event) {
 			console.log('quit');
@@ -33,7 +78,7 @@
 		const btnHelp = document.getElementById('help')
 		btnHelp.addEventListener('click', function () {
 			const numbers = document.getElementsByClassName('number');
-			numbers.forEach(ctrl =>{
+			numbers.forEach(ctrl => {
 				ctrl.setAttribute('style', 'opacity:0')
 			})
 			console.log(numbers.length);

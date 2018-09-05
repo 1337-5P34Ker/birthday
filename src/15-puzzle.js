@@ -1,12 +1,9 @@
 
 
-/**
- * 15-puzzle.js
- *
- * Copyright (c) 2015 Arnis Ritins
- * Released under the MIT license
- */
+
+
 (function () {
+
 
 	
 
@@ -48,17 +45,16 @@
 		puzzle.innerHTML = '';
 
 		var n = 1;
-		for (var i = 0; i <= 3; i++) {
-			for (var j = 0; j <= 3; j++) {
+		for (var i = 0; i <= 4; i++) {
+			for (var j = 0; j <= 4; j++) {
 				var cell = document.createElement('span');
 				cell.id = 'cell-' + i + '-' + j;
 				cell.style.left = (j * 80 + 1 * j + 1) + 'px';
 				cell.style.top = (i * 80 + 1 * i + 1) + 'px';
 
-				if (n <= 15) {
+				if (n <= 24) {
 					cell.classList.add('number');
 					cell.classList.add('f-' + n);
-					cell.classList.add((i % 2 == 0 && j % 2 > 0 || i % 2 > 0 && j % 2 == 0) ? 'dark' : 'light');
 					cell.innerHTML = (n++).toString();
 				} else {
 					cell.className = 'empty';
@@ -159,13 +155,13 @@
 		var benachbarteKacheln = [];
 
 		// Hole alle möglichen benachbarten Kacheln
-		if (reihe < 3) {
+		if (reihe < 4) {
 			benachbarteKacheln.push(holeKachel(reihe + 1, spalte));
 		}
 		if (reihe > 0) {
 			benachbarteKacheln.push(holeKachel(reihe - 1, spalte));
 		}
-		if (spalte < 3) {
+		if (spalte < 4) {
 			benachbarteKacheln.push(holeKachel(reihe, spalte + 1));
 		}
 		if (spalte > 0) {
@@ -183,15 +179,15 @@
 	function ueberpruefeReihenfolge() {
 
 		// Prüfe, ob die leere Kachel rechts unten ist.
-		if (holeKachel(3, 3).className != 'empty') {
+		if (holeKachel(4, 4).className != 'empty') {
 			return;
 		}
 
 		var n = 1;
 		// Geh durch alle Kacheln und überprüfe die Werte
-		for (var i = 0; i <= 3; i++) {
-			for (var j = 0; j <= 3; j++) {
-				if (n <= 15 && holeKachel(i, j).innerHTML != n.toString()) {
+		for (var i = 0; i <= 4; i++) {
+			for (var j = 0; j <= 4; j++) {
+				if (n <= 24 && holeKachel(i, j).innerHTML != n.toString()) {
 					// Kachel stimmt nicht
 					return;
 				}
@@ -222,7 +218,7 @@
 		var vorhergehendeKachel;
 		var i = 1;
 		var interval = setInterval(function () {
-			if (i <= 100) {
+			if (i <= 10) {
 				var leereKachel = holeLeereKachel();
 				var benachbarte = holeBenachbarteKacheln(leereKachel);
 				if (vorhergehendeKachel) {
@@ -240,8 +236,7 @@
 				clearInterval(interval);
 				state = 1;
 			}
-		}, 150);
-
+		}, 50);
 	}
 
 	/**
@@ -253,5 +248,7 @@
 		return Math.floor(Math.random() * (bis - von + 1)) + von;
 
 	}
+
+
 
 }());

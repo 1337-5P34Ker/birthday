@@ -4,7 +4,8 @@
   "description": "Geschenk zu Opa Andreas' 65. Geburtstag von Noah",
   "main": "main.js",
   "dependencies": {
-    "electron-packager": "^12.1.1"
+    "electron-packager": "^12.1.1",
+    "load-json-file": "^5.0.0"
   },
   "devDependencies": {
     "electron": "2.0.8"

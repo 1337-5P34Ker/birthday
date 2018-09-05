@@ -1,0 +1,18 @@
+[
+	 {
+		"src": "../assets/images/400x400/1.jpg",
+		"desc": "Bild 1"
+	},
+	{
+		"src": "../assets/images/400x400/2.jpg",
+		"desc": "Bild 2"
+	},
+	{
+		"src": "../assets/images/400x400/3.jpg",
+		"desc": "Bild 3"
+	},
+	{
+		"src": "../assets/images/400x400/4.jpg",
+		"desc": "Bild 4"
+	}
+]

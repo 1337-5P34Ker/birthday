@@ -21,8 +21,8 @@ p a{color: #888;}
 
 #puzzle{
 	position: relative;
-	width: 325px;
-	height: 325px;
+	width: 405px;
+	height: 405px;
 	margin: 0 auto;
 	margin-top: 80px;
 	border: 8px solid #001F1F;
@@ -36,7 +36,7 @@ p a{color: #888;}
 	height: 80px;
 	border-radius: 4px;
 	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
-	background-image: url(../assets/images/image_1.jpg);
+	background-image: url(../assets/images/400x400/2.jpg);
 }
 #puzzle span.number{
 	cursor: pointer;
@@ -67,35 +67,70 @@ p a{color: #888;}
 	background-position: -240px 0;
 }
 .f-5{
+	background-position: -320px 0;
+}
+
+
+.f-6{
 	background-position: 0 -80px;
 }
-.f-6{
+.f-7{
 	background-position: -80px -80px;
 }
-.f-7{
+.f-8{
 	background-position: -160px -80px;
 }
-.f-8{
+.f-9{
 	background-position: -240px -80px;
 }
-.f-9{
+.f-10{
+	background-position: -320px -80px;
+}
+
+
+.f-11{
 	background-position: 0 -160px;
 }
-.f-10{
+.f-12{
 	background-position: -80px -160px;
 }
-.f-11{
+.f-13{
 	background-position: -160px -160px;
 }
-.f-12{
+.f-14{
 	background-position: -240px -160px;
 }
-.f-13{
+.f-15{
+	background-position: -320px -160px;
+}
+
+
+.f-16{
 	background-position: 0 -240px;
 }
-.f-14{
+.f-17{
 	background-position: -80px -240px;
 }
-.f-15{
+.f-18{
 	background-position: -160px -240px;
 }
+.f-19{
+	background-position: -240px -240px;
+}
+.f-20{
+	background-position: -320px -240px;
+}
+
+.f-21{
+	background-position: 0 -320px;
+}
+.f-22{
+	background-position: -80px -320px;
+}
+.f-23{
+	background-position: -160px -320px;
+}
+.f-24{
+	background-position: -240px -320px;
+}
+
