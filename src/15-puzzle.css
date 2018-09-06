@@ -1,11 +1,29 @@
-::selection {background: transparent;}
-p{margin: 0; font: 12px/150% Arial; text-align: center; color: #888;}
-p a{color: #888;}
+::selection {
+	background: transparent;
+}
 
-#controls{text-align: center;}
-#controls button{
+p {
+	margin: 0;
+	font: 12px/150% Arial;
+	text-align: center;
+	color: #888;
+}
+
+p a {
+	color: #888;
+}
+
+body {
+	background: url(../assets/images/background.png) top left no-repeat;
+}
+
+#controls {
+	text-align: center;
+}
+
+#controls button {
 	cursor: pointer;
-	outline: none;	
+	outline: none;
 	padding: 10px 20px;
 	margin: 25px 2px;
 	border: 0;
@@ -14,12 +32,15 @@ p a{color: #888;}
 	font: bold 14px Arial;
 	text-align: center;
 	text-transform: uppercase;
-	text-shadow: -1px -1px 0 rgba(0,0,0, 0.5);
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
 	color: #fff;
 }
-#controls button:hover{background: #003333;}
 
-#puzzle{
+#controls button:hover {
+	background: #003333;
+}
+
+#puzzle {
 	position: relative;
 	width: 405px;
 	height: 405px;
@@ -28,104 +49,148 @@ p a{color: #888;}
 	border: 8px solid #001F1F;
 	border-radius: 4px;
 	background-color: black;
+	transform: rotate(-1deg) scale(0.7);
 }
-#puzzle span{
+
+#puzzle span {
 	position: absolute;
 	display: block;
 	width: 80px;
 	height: 80px;
 	border-radius: 4px;
-	box-shadow: inset 0px 0px 10px rgba(0,0,0,0.7);
+	box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.7);
 	background-image: url(../assets/images/400x400/2.jpg);
 }
-#puzzle span.number{
+
+#puzzle span.number {
 	cursor: pointer;
 	font: bold 36px/80px Arial;
 	text-align: center;
-	text-shadow: -1px -1px 0 rgba(0,0,0, 0.5);
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
 	color: #fff;
 }
-#puzzle span.empty{background: transparent;}
+
+#puzzle span.empty {
+	background: transparent;
+}
+
 /* #puzzle span.number.light{background: #226666;}
 #puzzle span.number.dark{background: #003333;} */
-
-#puzzle.animate span{
+#puzzle.animate span {
 	-webkit-transition: 0.25s left, 0.25s top;
- 	transition: 0.25s left, 0.25s top;
+	transition: 0.25s left, 0.25s top;
 }
 
-#description{text-align: center;}
+#description {
+	text-align: center;
+}
 
-.f-1{
+#preview {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 80px;
+	border: 2px solid #001F1F;
+	border-radius: 4px;
+	background-color: transparent;
+	transform: rotate(2deg) scale(0.7);
+	background-image: url(../assets/images/400x400/2.jpg);
+	background-size: cover;
+}
+
+.f-1 {
 	background-position: 0 0;
 }
-.f-2{
+
+.f-2 {
 	background-position: -80px 0;
 }
-.f-3{
+
+.f-3 {
 	background-position: -160px 0;
 }
-.f-4{
+
+.f-4 {
 	background-position: -240px 0;
 }
-.f-5{
+
+.f-5 {
 	background-position: -320px 0;
 }
-.f-6{
+
+.f-6 {
 	background-position: 0 -80px;
 }
-.f-7{
+
+.f-7 {
 	background-position: -80px -80px;
 }
-.f-8{
+
+.f-8 {
 	background-position: -160px -80px;
 }
-.f-9{
+
+.f-9 {
 	background-position: -240px -80px;
 }
-.f-10{
+
+.f-10 {
 	background-position: -320px -80px;
 }
-.f-11{
+
+.f-11 {
 	background-position: 0 -160px;
 }
-.f-12{
+
+.f-12 {
 	background-position: -80px -160px;
 }
-.f-13{
+
+.f-13 {
 	background-position: -160px -160px;
 }
-.f-14{
+
+.f-14 {
 	background-position: -240px -160px;
 }
-.f-15{
+
+.f-15 {
 	background-position: -320px -160px;
 }
-.f-16{
+
+.f-16 {
 	background-position: 0 -240px;
 }
-.f-17{
+
+.f-17 {
 	background-position: -80px -240px;
 }
-.f-18{
+
+.f-18 {
 	background-position: -160px -240px;
 }
-.f-19{
+
+.f-19 {
 	background-position: -240px -240px;
 }
-.f-20{
+
+.f-20 {
 	background-position: -320px -240px;
 }
-.f-21{
+
+.f-21 {
 	background-position: 0 -320px;
 }
-.f-22{
+
+.f-22 {
 	background-position: -80px -320px;
 }
-.f-23{
+
+.f-23 {
 	background-position: -160px -320px;
 }
-.f-24{
+
+.f-24 {
 	background-position: -240px -320px;
 }
-

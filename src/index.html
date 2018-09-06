@@ -8,8 +8,10 @@
 
 </head>
 
-<body>
-	<div id="puzzle"></div>
+<body><div>
+	<div id="puzzle" class="image"></div>
+	<div id="preview" class="image"></div>
+	</div>
 	<div id="description"></div>
 	<div id="controls">
 		<button id="solve">Lösen</button>
@@ -60,7 +62,7 @@
 			// var attr = document.createAttribute('type');
 			// attr.value = 'text/css';
 			// customStyle.a(attr); 
-			customStyle.innerText = `#puzzle span{background-image: url(${bild});}`;
+			customStyle.innerText = `.image span{background-image: url(${bild});}`;
 			var head = document.getElementsByTagName('head');
 			head[0].appendChild(customStyle);
 		}
