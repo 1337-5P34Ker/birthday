@@ -37,7 +37,7 @@ function createWindow() {
 
 
   // Öffnen der DevTools.
-  // win.webContents.openDevTools();
+   win.webContents.openDevTools();
   process.env.NODE_ENV = 'production';
 
   // Ausgegeben, wenn das Fenster geschlossen wird.

@@ -8,11 +8,19 @@
 
 </head>
 
-<body><div>
-	<div id="puzzle" class="image"></div>
-	<div id="preview" class="image"></div>
+<body><div>	
+	<div id="puzzle"></div>
+	<div id="preview"></div>
+	<div id="level"></div>
+	<div id="go" class="button go"></div>
+	<div id="next" class="button next"></div>
+	<div id="prev" class="button prev"></div>
+	<div id="exit" class="button exit"></div>
+	<div id="help" class="button help"></div>
+
 	</div>
 	<div id="description"></div>
+	<!--
 	<div id="controls">
 		<button id="solve">Lösen</button>
 		<button id="scramble">Mischen</button>
@@ -21,6 +29,7 @@
 		<button id="prev">&lt;</button>
 		<button id="next">&gt;</button>
 	</div>
+	-->
 
 	<script src="15-puzzle.js"></script>
 	<script src="../assets/images.json"></script>
@@ -41,6 +50,7 @@
 			var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
+			setzeLevel(neuesBild);	
 		}
 
 		function vorhergehendesBild() {
@@ -48,6 +58,7 @@
 			var neuesBild = aktuellesBild > 0 ? aktuellesBild : bilder.length - 1;
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
+			setzeLevel(neuesBild);
 		}
 
 		function setzeBild(id) {
@@ -62,7 +73,7 @@
 			// var attr = document.createAttribute('type');
 			// attr.value = 'text/css';
 			// customStyle.a(attr); 
-			customStyle.innerText = `.image span{background-image: url(${bild});}`;
+			customStyle.innerText = `#puzzle span{background-image: url(${bild});} #preview {background-image: url(${bild});}`;
 			var head = document.getElementsByTagName('head');
 			head[0].appendChild(customStyle);
 		}
@@ -71,7 +82,12 @@
 			beschreibung = bilder[id].desc;
 			var descriptionElement = document.getElementById('description');
 			descriptionElement.innerText = beschreibung;
+		}
 
+		function setzeLevel(level){
+			
+			var levelElement = document.getElementById('level');
+			levelElement.innerText = level;
 		}
 
 
@@ -81,11 +97,10 @@
 		const btnNext = document.getElementById('next');
 		btnNext.addEventListener('click', naechstesBild)
 
-		const btnQuit = document.getElementById('quit')
-		btnQuit.addEventListener('click', function (event) {
-			console.log('quit');
+		const btnQuit = document.getElementById('exit')
+		btnQuit.addEventListener('click', () => {
 			ipc.send('quit')
-		})
+		});
 
 		const btnHelp = document.getElementById('help')
 		btnHelp.addEventListener('click', function () {

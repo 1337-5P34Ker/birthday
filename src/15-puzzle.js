@@ -24,9 +24,9 @@
 	
 
 	// Listens for click on control buttons
-	document.getElementById('solve').addEventListener('click', loesen);
-	document.getElementById('scramble').addEventListener('click', mischen);
-	document.getElementById('quit').addEventListener('click', quit);
+	//document.getElementById('solve').addEventListener('click', loesen);
+	document.getElementById('go').addEventListener('click', mischen);
+	// document.getElementById('exit').addEventListener('click', quit);
 
 	function quit() {
 		app.quit();
@@ -55,7 +55,8 @@
 				if (n <= 24) {
 					cell.classList.add('number');
 					cell.classList.add('f-' + n);
-					cell.innerHTML = (n++).toString();
+					//cell.innerHTML = (n++).toString();
+					n++;
 				} else {
 					cell.className = 'empty';
 				}
@@ -73,7 +74,7 @@
 	function verschieben(cell) {
 
 		// Teste, ob die angeklickte Kachel die leere ist.
-		if (cell.clasName != 'empty') {
+		if (cell.className != 'empty') {
 
 			// Versuche,ob eine benachbarte Kachel leer ist
 			var leereKachel = holeLeereBenachbarteKachel(cell);
@@ -218,25 +219,25 @@
 		var vorhergehendeKachel;
 		var i = 1;
 		var interval = setInterval(function () {
-			if (i <= 10) {
+			if (i <= 200) {
 				var leereKachel = holeLeereKachel();
 				var benachbarte = holeBenachbarteKacheln(leereKachel);
-				if (vorhergehendeKachel) {
-					for (var j = benachbarte.length - 1; j >= 0; j--) {
-						if (benachbarte[j].innerHTML == vorhergehendeKachel.innerHTML) {
-							benachbarte.splice(j, 1);
-						}
-					}
-				}
+				// if (vorhergehendeKachel) {
+				// 	for (var j = benachbarte.length - 1; j >= 0; j--) {
+				// 		if (benachbarte[j].innerHTML == vorhergehendeKachel.innerHTML) {
+				// 			benachbarte.splice(j, 1);
+				// 		}
+				// 	}
+				// }
 				// Gets random adjacent cell and memorizes it for the next iteration
-				vorhergehendeKachel = benachbarte[rand(0, benachbarte.length - 1)];
-				verschieben(vorhergehendeKachel);
+				benachbarteKachel = benachbarte[rand(0, benachbarte.length - 1)];
+				verschieben(benachbarteKachel);
 				i++;
 			} else {
 				clearInterval(interval);
 				state = 1;
 			}
-		}, 50);
+		}, 5);
 	}
 
 	/**

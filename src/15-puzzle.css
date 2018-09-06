@@ -41,17 +41,56 @@ body {
 }
 
 #puzzle {
-	position: relative;
-	width: 405px;
-	height: 405px;
-	margin: 0 auto;
-	margin-top: 80px;
-	border: 8px solid #001F1F;
-	border-radius: 4px;
-	background-color: black;
-	transform: rotate(-1deg) scale(0.7);
+	position: absolute;
+    width: 405px;
+    height: 405px;
+    top: 120px;
+    left: 120px;
+    border: 8px solid #001F1F;
+    border-radius: 4px;
+    background-color: black;
+    transform: rotate(-4deg) scale(1);
 }
 
+.button {
+	position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 120px;
+	left: 120px;
+	cursor: pointer;
+}
+
+.go{
+	background: url('../assets/images/buttons/go.png');
+	top: 550px;
+    left: 900px;
+    width: 150px;
+    height: 150px;
+}
+.next{
+	background: url('../assets/images/buttons/next.png');
+	top: 530px;
+    left: 450px;
+}
+
+.prev{
+	background: url('../assets/images/buttons/prev.png');
+	top: 550px;
+    left: 100px;
+}
+
+.exit{
+	background: url('../assets/images/buttons/exit.png');
+	top: 100px;
+    left: 1000px;
+}
+
+.help{
+	background: url('../assets/images/buttons/help.png');
+    top: 400px;
+    left: 680px;
+}
 #puzzle span {
 	position: absolute;
 	display: block;
@@ -59,7 +98,7 @@ body {
 	height: 80px;
 	border-radius: 4px;
 	box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.7);
-	background-image: url(../assets/images/400x400/2.jpg);
+	/*background-image: url(../assets/images/400x400/2.jpg);*/
 }
 
 #puzzle span.number {
@@ -85,18 +124,17 @@ body {
 	text-align: center;
 }
 
-#preview {
-	position: relative;
-	width: 200px;
-	height: 200px;
-	margin: 0 auto;
-	margin-top: 80px;
-	border: 2px solid #001F1F;
-	border-radius: 4px;
-	background-color: transparent;
-	transform: rotate(2deg) scale(0.7);
-	background-image: url(../assets/images/400x400/2.jpg);
-	background-size: cover;
+#preview {	
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 250px;
+    left: 560px;
+    border: 2px solid #001F1F;
+    border-radius: 4px;
+    background-color: transparent;
+	transform: rotate(2deg) scale(0.7);	
+    background-size: cover;
 }
 
 .f-1 {
