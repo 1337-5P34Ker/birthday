@@ -54,6 +54,8 @@ p a{color: #888;}
  	transition: 0.25s left, 0.25s top;
 }
 
+#description{text-align: center;}
+
 .f-1{
 	background-position: 0 0;
 }
@@ -69,8 +71,6 @@ p a{color: #888;}
 .f-5{
 	background-position: -320px 0;
 }
-
-
 .f-6{
 	background-position: 0 -80px;
 }
@@ -86,8 +86,6 @@ p a{color: #888;}
 .f-10{
 	background-position: -320px -80px;
 }
-
-
 .f-11{
 	background-position: 0 -160px;
 }
@@ -103,8 +101,6 @@ p a{color: #888;}
 .f-15{
 	background-position: -320px -160px;
 }
-
-
 .f-16{
 	background-position: 0 -240px;
 }
@@ -120,7 +116,6 @@ p a{color: #888;}
 .f-20{
 	background-position: -320px -240px;
 }
-
 .f-21{
 	background-position: 0 -320px;
 }

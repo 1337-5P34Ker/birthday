@@ -10,6 +10,7 @@
 
 <body>
 	<div id="puzzle"></div>
+	<div id="description"></div>
 	<div id="controls">
 		<button id="solve">Lösen</button>
 		<button id="scramble">Mischen</button>
@@ -25,6 +26,7 @@
 		const loadJsonFile = require('load-json-file');
 		const ipc = require('electron').ipcRenderer
 		var aktuellesBild = 0;
+		var aktuelleBeschreibung ='';
 		var bilder;
 
 		loadJsonFile('assets/images.json').then(json => {
@@ -36,30 +38,38 @@
 			aktuellesBild++;
 			var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
 			setzeBild(neuesBild);
+			setzeBeschreibung(neuesBild);
 		}
 
 		function vorhergehendesBild() {
 			aktuellesBild--;
 			var neuesBild = aktuellesBild > 0 ? aktuellesBild : bilder.length - 1;
 			setzeBild(neuesBild);
+			setzeBeschreibung(neuesBild);
 		}
 
 		function setzeBild(id) {
 			aktuellesBild = id;
-			var src = bilder[id].src;
+			var bild = bilder[id].src;			
 			var customStyle = document.getElementById('customStyle');
 			if (customStyle != null &&  customStyle.parentNode) {
 				customStyle.parentNode.removeChild(customStyle);
 			}
 			customStyle = document.createElement('style');
-			console.log(src);
 			customStyle.id = 'customStyle';
 			// var attr = document.createAttribute('type');
 			// attr.value = 'text/css';
 			// customStyle.a(attr); 
-			customStyle.innerText = `#puzzle span{background-image: url(${src});}`;
+			customStyle.innerText = `#puzzle span{background-image: url(${bild});}`;
 			var head = document.getElementsByTagName('head');
 			head[0].appendChild(customStyle);
+		}
+
+		function setzeBeschreibung(id){
+			beschreibung = bilder[id].desc;
+			var descriptionElement = document.getElementById('description');
+			descriptionElement.innerText = beschreibung;
+
 		}
 
 
