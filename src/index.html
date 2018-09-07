@@ -12,6 +12,7 @@
 	<div>
 		<div id="puzzle"></div>
 		<div id="preview" style="opacity:0"></div>
+		<div id="super"></div>
 		<div id="level"></div>
 		<div id="go" class="button go"></div>
 		<div id="next" class="button next"></div>
@@ -52,14 +53,16 @@
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
 			setzeLevel(neuesBild);
+			loesen();
 		}
 
 		function vorhergehendesBild() {
 			aktuellesBild--;
-			var neuesBild = aktuellesBild > 0 ? aktuellesBild : bilder.length - 1;
+			var neuesBild = aktuellesBild >= 0 ? aktuellesBild : bilder.length - 1;
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
 			setzeLevel(neuesBild);
+			loesen();
 		}
 
 		function setzeBild(id) {

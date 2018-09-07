@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'gloria_hallelujahregular';
+    src: url('../assets/fonts/gloriahallelujah-webfont.woff2') format('woff2'),
+         url('../assets/fonts/gloriahallelujah-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 ::selection {
 	background: transparent;
 }
@@ -91,6 +101,19 @@ body {
     top: 400px;
     left: 680px;
 }
+
+#super{
+	background: url(../assets/images/super.png);
+    position: absolute;
+    top: 150px;
+    left: 160px;
+    width: 350px;
+    height: 350px;
+	opacity: 0.9;
+	display: none;
+	-webkit-transition: 1.25s display;
+	transition: 1.25s display;
+}
 #puzzle span {
 	position: absolute;
 	display: block;
@@ -122,6 +145,13 @@ body {
 
 #description {
 	text-align: center;
+    font-family: 'gloria_hallelujahregular';
+    color: #fff;
+    position: absolute;
+    top: 250px;
+    left: 800px;
+    width: 250px;
+    height: 150px;
 }
 
 #preview {	

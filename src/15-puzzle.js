@@ -2,7 +2,7 @@
 
 
 
-(function () {
+
 
 
 	
@@ -188,7 +188,7 @@
 		// Geh durch alle Kacheln und überprüfe die Werte
 		for (var i = 0; i <= 4; i++) {
 			for (var j = 0; j <= 4; j++) {
-				if (n <= 24 && holeKachel(i, j).innerHTML != n.toString()) {
+				if (n <= 24 && holeKachel(i, j).id != `cell-${i}-${j}`) {
 					// Kachel stimmt nicht
 					return;
 				}
@@ -196,17 +196,21 @@
 			}
 		}
 
-		// Puzzle is solved, offers to scramble it
-		if (confirm('Congrats, You did it! \nScramble the puzzle?')) {
-			mischen();
-		}
+		// Alles richtig
+		
+		var superElement = document.getElementById('super');
+		superElement.setAttribute('style', 'display:block');
+			window.setTimeout( () =>{
+				superElement.setAttribute('style', 'display:none');
+				naechstesBild();
+				mischen();
+			},5000);
+			
+		
 
 	}
 
-	/**
-	 * Mische puzzle
-	 *
-	 */
+	/**  Mische puzzle */
 	function mischen() {
 
 		if (state == 0) {
@@ -219,17 +223,9 @@
 		var vorhergehendeKachel;
 		var i = 1;
 		var interval = setInterval(function () {
-			if (i <= 200) {
+			if (i <= 150) {
 				var leereKachel = holeLeereKachel();
 				var benachbarte = holeBenachbarteKacheln(leereKachel);
-				// if (vorhergehendeKachel) {
-				// 	for (var j = benachbarte.length - 1; j >= 0; j--) {
-				// 		if (benachbarte[j].innerHTML == vorhergehendeKachel.innerHTML) {
-				// 			benachbarte.splice(j, 1);
-				// 		}
-				// 	}
-				// }
-				// Gets random adjacent cell and memorizes it for the next iteration
 				benachbarteKachel = benachbarte[rand(0, benachbarte.length - 1)];
 				verschieben(benachbarteKachel);
 				i++;
@@ -240,16 +236,10 @@
 		}, 5);
 	}
 
-	/**
-	 * Generiere Zufallszahl
-	 *
-	 */
+	/**  Generiere Zufallszahl */
 	function rand(von, bis) {
-
 		return Math.floor(Math.random() * (bis - von + 1)) + von;
-
 	}
 
 
 
-}());
