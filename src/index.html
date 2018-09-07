@@ -8,15 +8,16 @@
 
 </head>
 
-<body><div>	
-	<div id="puzzle"></div>
-	<div id="preview"></div>
-	<div id="level"></div>
-	<div id="go" class="button go"></div>
-	<div id="next" class="button next"></div>
-	<div id="prev" class="button prev"></div>
-	<div id="exit" class="button exit"></div>
-	<div id="help" class="button help"></div>
+<body>
+	<div>
+		<div id="puzzle"></div>
+		<div id="preview" style="opacity:0"></div>
+		<div id="level"></div>
+		<div id="go" class="button go"></div>
+		<div id="next" class="button next"></div>
+		<div id="prev" class="button prev"></div>
+		<div id="exit" class="button exit"></div>
+		<div id="help" class="button help"></div>
 
 	</div>
 	<div id="description"></div>
@@ -37,7 +38,7 @@
 		const loadJsonFile = require('load-json-file');
 		const ipc = require('electron').ipcRenderer
 		var aktuellesBild = 0;
-		var aktuelleBeschreibung ='';
+		var aktuelleBeschreibung = '';
 		var bilder;
 
 		loadJsonFile('assets/images.json').then(json => {
@@ -50,7 +51,7 @@
 			var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
-			setzeLevel(neuesBild);	
+			setzeLevel(neuesBild);
 		}
 
 		function vorhergehendesBild() {
@@ -63,9 +64,9 @@
 
 		function setzeBild(id) {
 			aktuellesBild = id;
-			var bild = bilder[id].src;			
+			var bild = bilder[id].src;
 			var customStyle = document.getElementById('customStyle');
-			if (customStyle != null &&  customStyle.parentNode) {
+			if (customStyle != null && customStyle.parentNode) {
 				customStyle.parentNode.removeChild(customStyle);
 			}
 			customStyle = document.createElement('style');
@@ -78,14 +79,14 @@
 			head[0].appendChild(customStyle);
 		}
 
-		function setzeBeschreibung(id){
+		function setzeBeschreibung(id) {
 			beschreibung = bilder[id].desc;
 			var descriptionElement = document.getElementById('description');
 			descriptionElement.innerText = beschreibung;
 		}
 
-		function setzeLevel(level){
-			
+		function setzeLevel(level) {
+
 			var levelElement = document.getElementById('level');
 			levelElement.innerText = level;
 		}
@@ -104,11 +105,12 @@
 
 		const btnHelp = document.getElementById('help')
 		btnHelp.addEventListener('click', function () {
-			const numbers = document.getElementsByClassName('number');
-			numbers.forEach(ctrl => {
-				ctrl.setAttribute('style', 'opacity:0')
-			})
-			console.log(numbers.length);
+			const preview = document.getElementById('preview');
+			preview.setAttribute('style', 'opacity:1');
+			window.setTimeout( () =>{
+				preview.setAttribute('style', 'opacity:0');
+			},5000);
+
 		});
 	</script>
 </body>

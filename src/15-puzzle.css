@@ -134,7 +134,9 @@ body {
     border-radius: 4px;
     background-color: transparent;
 	transform: rotate(2deg) scale(0.7);	
-    background-size: cover;
+	background-size: cover;
+	-webkit-transition: 1.25s oacity;
+	transition: 1.25s opacity;
 }
 
 .f-1 {
