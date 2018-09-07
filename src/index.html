@@ -107,12 +107,16 @@
 
 		const btnQuit = document.getElementById('exit')
 		btnQuit.addEventListener('click', () => {
+			var audio = new Audio('../assets/audio/button.mp3');
+			audio.play();
 			ipc.send('quit')
 		});
 
 		const btnHelp = document.getElementById('help')
 		btnHelp.addEventListener('click', function () {
 			const preview = document.getElementById('preview');
+			var audio = new Audio('../assets/audio/button.mp3');
+			audio.play();
 			preview.setAttribute('style', 'opacity:1');
 			window.setTimeout( () =>{
 				preview.setAttribute('style', 'opacity:0');

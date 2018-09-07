@@ -25,7 +25,10 @@
 
 	// Listens for click on control buttons
 	//document.getElementById('solve').addEventListener('click', loesen);
-	document.getElementById('go').addEventListener('click', mischen);
+	document.getElementById('go').addEventListener('click', () =>{
+		var audio = new Audio('../assets/audio/button.mp3');
+		audio.play();
+		mischen();});
 	// document.getElementById('exit').addEventListener('click', quit);
 
 	function quit() {
