@@ -179,16 +179,16 @@
 	 */
 	function ueberpruefeReihenfolge() {
 
-		// Prüfe, ob die leere Kachel rechts unten ist.
-		if (holeKachel(4, 4).className != 'empty') {
-			return;
-		}
+		// // Prüfe, ob die leere Kachel rechts unten ist.
+		// if (holeKachel(4, 4).className != 'empty') {
+		// 	return false;
+		// }
 
 		var n = 1;
 		// Geh durch alle Kacheln und überprüfe die Werte
 		for (var i = 0; i <= 4; i++) {
 			for (var j = 0; j <= 4; j++) {
-				if (n <= 24 && holeKachel(i, j).id != `cell-${i}-${j}`) {
+				if (n <= 24 && holeKachel(i, j).className.indexOf(`f-${n}`) == -1) {
 					// Kachel stimmt nicht
 					return;
 				}
@@ -200,11 +200,15 @@
 		
 		var superElement = document.getElementById('super');
 		superElement.setAttribute('style', 'display:block');
-			window.setTimeout( () =>{
-				superElement.setAttribute('style', 'display:none');
-				naechstesBild();
+		var audio = new Audio('../assets/audio/applause.mp3');
+		audio.play();	
+			window.setTimeout( () =>{			
+				superElement.setAttribute('style', 'display:none');				
+				aktuellesBild++;
+				var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
+				setzeBild(neuesBild);
 				mischen();
-			},5000);
+			},8000);
 			
 		
 
@@ -220,20 +224,23 @@
 		puzzle.removeAttribute('class');
 		state = 0;
 
-		var vorhergehendeKachel;
+		var audio = new Audio('../assets/audio/move.mp3');
+			
+
 		var i = 1;
 		var interval = setInterval(function () {
-			if (i <= 150) {
+			if (i <= 100) {
 				var leereKachel = holeLeereKachel();
 				var benachbarte = holeBenachbarteKacheln(leereKachel);
 				benachbarteKachel = benachbarte[rand(0, benachbarte.length - 1)];
 				verschieben(benachbarteKachel);
+				audio.play();
 				i++;
 			} else {
 				clearInterval(interval);
 				state = 1;
 			}
-		}, 5);
+		}, 70);
 	}
 
 	/**  Generiere Zufallszahl */

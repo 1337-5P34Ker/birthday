@@ -151,7 +151,8 @@ body {
     top: 250px;
     left: 800px;
     width: 250px;
-    height: 150px;
+	height: 150px;
+	font-size: 25px;
 }
 
 #preview {	
