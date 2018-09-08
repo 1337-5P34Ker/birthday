@@ -30,14 +30,11 @@ function createWindow() {
 
 
   // Öffnen der DevTools.
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
   process.env.NODE_ENV = 'production';
 
   // Ausgegeben, wenn das Fenster geschlossen wird.
   win.on('closed', () => {
-    // Dereferenzieren des Fensterobjekts, normalerweise würden Sie Fenster
-    // in einem Array speichern, falls Ihre App mehrere Fenster unterstützt. 
-    // Das ist der Zeitpunkt, an dem Sie das zugehörige Element löschen sollten.
     win = null
   })
 
