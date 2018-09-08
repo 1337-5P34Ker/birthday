@@ -1,3 +1,4 @@
 node_modules/
 package-lock.json
 release-builds
+assets/images/400x400/*.jpg

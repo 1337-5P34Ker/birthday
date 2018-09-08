@@ -148,11 +148,11 @@ body {
     font-family: 'gloria_hallelujahregular';
     color: #fff;
     position: absolute;
-    top: 250px;
-    left: 800px;
+    top: 175px;
+    left: 650px;
     width: 250px;
-	height: 150px;
-	font-size: 25px;
+    height: 150px;
+    font-size: 25px;
 }
 
 #preview {	

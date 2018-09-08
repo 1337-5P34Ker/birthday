@@ -34,17 +34,22 @@
 	-->
 
 	<script src="15-puzzle.js"></script>
-	<script src="../assets/images.json"></script>
 	<script>
+
+var path = require("path");
+var basePath = path.resolve(__dirname) + '/';
+
+
 		const loadJsonFile = require('load-json-file');
 		const ipc = require('electron').ipcRenderer
 		var aktuellesBild = 0;
 		var aktuelleBeschreibung = '';
 		var bilder;
 
-		loadJsonFile('assets/images.json').then(json => {
+		loadJsonFile(basePath + 'images.json').then(json => {
 			bilder = json;
 			setzeBild(0);
+			setzeBeschreibung(0);
 		});
 
 		function naechstesBild() {
@@ -54,7 +59,7 @@
 			var neuesBild = aktuellesBild < bilder.length ? aktuellesBild : 0;
 			setzeBild(neuesBild);
 			setzeBeschreibung(neuesBild);
-			setzeLevel(neuesBild);
+			setzeLevel(neuesBild);			
 			loesen();
 		}
 

@@ -5,18 +5,11 @@ const {
 } = require('electron')
 const ipc = require('electron').ipcMain
 
-
-
-
-
 // Behalten Sie eine globale Referenz auf das Fensterobjekt. 
 // Wenn Sie dies nicht tun, wird das Fenster automatisch geschlossen, 
 // sobald das Objekt dem JavaScript-Garbagekollektor übergeben wird.
 
 let win
-
-// const files = glob.sync(path.join(__dirname, 'assets/images.json'))
-// files.forEach((file) => { require(file) })
 
 function createWindow() {
 
@@ -27,7 +20,7 @@ function createWindow() {
     frame: false,
     transparent: true,
     resizable: true,
-    movable: true
+    movable: false
   })
 
 
@@ -37,7 +30,7 @@ function createWindow() {
 
 
   // Öffnen der DevTools.
-   win.webContents.openDevTools();
+  win.webContents.openDevTools();
   process.env.NODE_ENV = 'production';
 
   // Ausgegeben, wenn das Fenster geschlossen wird.
@@ -73,7 +66,7 @@ function createWindow() {
 // Einige APIs können nur nach dem Auftreten dieses Events genutzt werden.
 app.on('ready', () => {
   createWindow();
- 
+
 })
 
 // Verlassen, wenn alle Fenster geschlossen sind.
